@@ -3,6 +3,7 @@ import Icon from "../icon/Icon";
 import '../register-form/_register-form.scss';
 
 export default function RegisterForm() {
+    const [passwordShown, setPasswordShown] = useState(false);
     const [value, setValue] = useState({});
     const [typeError, setTypeError] = useState({email: '', password: ''});
 
@@ -16,6 +17,7 @@ export default function RegisterForm() {
             event.preventDefault();
         } else {
             alert(`Email: ${value.email}, Password: ${value.password}`);
+            setValue('')
         }
         event.preventDefault();
     }
@@ -44,19 +46,31 @@ export default function RegisterForm() {
         }
     }
 
+    const showPassword = () => {
+        setPasswordShown(!passwordShown);
+    }
+
     return (
         <form action="#" className='form'>
+            <h1 className='form__title'>Login</h1>
             <div className={typeError.email !== '' ? 'form__group form__group_error' : 'form__group'}>
                 <input onFocus={onFocus} className='form__input' placeholder='Email address' name='email' type="text" value={value.email || ''} onChange={handleChange}/>
                 <span className='form__message-error'>{typeError.email}</span>
             </div>
             <div className={typeError.password !== '' ? 'form__group form__group_error' : 'form__group'}>
-                <input onFocus={onFocus} className='form__input' placeholder='Password' name='password' type="password" value={value.password || ''} onChange={handleChange}/>
+                <div className='form__password'>
+                    <input onFocus={onFocus} className='form__input' placeholder='Password' name='password' type={passwordShown ? "text" : "password"} value={value.password || ''} onChange={handleChange}/>
+                    <span onClick={showPassword}><Icon icon='eye'/></span>
+                </div>
                 <span className='form__message-error'>{typeError.password}</span>
             </div>
-            <button type='submit' className='btn btn_medium' onClick={handleSubmit}>
+            <button type='submit' className='form__btn' onClick={handleSubmit}>
                 <span>Log in</span>
             </button>
+            <div className='form__description'>
+                <a href="#">Forgot your password?</a>
+                <p>Don’t have an account yet? <a href="#">Register</a></p>
+            </div>
         </form>
     )
 }
