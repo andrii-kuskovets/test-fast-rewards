@@ -1,0 +1,203 @@
+@import '../../assets/scss/base/_variables.scss';
+.form {
+  width: 556px;
+  margin: 0 24px 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  padding: 88px 0;
+  background: $light;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  @media (max-width: 1024px) {
+    width: 488px;
+    margin-right: 16px;
+  }
+
+  @media (max-width: 768px) {
+    width: 71%;
+    margin: 0 auto;
+
+    &:after,
+    &:before {
+      content: '';
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+      position: absolute;
+      background-image: url("../../assets/img/plus.png");
+      left: -97px;
+      top: 54%;
+      width: 97px;
+      height: 83px;
+    }
+
+    &:before {
+      background-image: url("../../assets/img/spring-plus.png");
+      left: auto;
+      right: -110px;
+      width: 117px;
+      height: 141px;
+    }
+
+  }
+
+  @media (max-width: 375px) {
+    width: calc(100% - 32px);
+    padding: 40px 0 56px 0;
+
+    &:after {
+      top: auto;
+      bottom: -78px;
+      width: 75px;
+      height: 78px;
+      left: 0;
+      transform: matrix(-0.55, 0.83, -0.84, -0.55, 0, 0);
+    }
+
+    &:before {
+      top: auto;
+      background-image: url("../../assets/img/spring-plus-mob.png");
+      bottom: -85px;
+      width: 104px;
+      height: 97px;
+      right: -16px;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 19px;
+    color: $dark;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 64px;
+
+    @media (max-width: 375px) {
+      font-size: 24px;
+      margin-bottom: 50px;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    border: 1px solid $textAndInput;
+    border-radius: 8px;
+    font-weight: normal;
+    font-size: 16px;
+    color: $textAndInput;
+    padding: 13.5px 14px;
+    display: block;
+    margin: 0 auto;
+
+    @media (max-width: 375px) {
+      padding: 9.5px 14px;
+      margin-bottom: 36px;
+    }
+
+    &::placeholder {
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: $textAndInput;
+    }
+  }
+
+  &__description {
+    width: 260px;
+    text-align: center;
+    margin: 0 auto;
+    color: $textAndInput;
+    font-size: 16px;
+    line-height: 150%;
+
+      a {
+        color: $textAndInput;
+      }
+
+      p {
+        margin-top: 16px;
+
+        a {
+         color: rgb(66, 133, 244);
+         letter-spacing: 0.005em;
+         text-decoration: none;
+       }
+      }
+  }
+
+  &__password {
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 14px;
+      fill: #aaaaaa;
+      cursor: pointer;
+    }
+  }
+
+  &__group {
+    width: 260px;
+    margin: 0 auto 32px;
+    position: relative;
+
+    &_error {
+      .form__input {
+        border-color: $error;
+
+        &::placeholder {
+          color: $error;
+        }
+      }
+
+      .form__password {
+        svg {
+          fill: $error;
+        }
+      }
+
+      .form__message-error {
+        display: block;
+      }
+    }
+  }
+
+  &__btn {
+    display: block;
+    border: none;
+    width: 212px;
+    background: linear-gradient(90deg, #FF9146 0%, #FF351B 100%);
+    border-radius: 5px;
+    padding: 14px 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 110px auto 16px;
+    color: $light;
+
+    @media (max-width: 375px) {
+        margin-top: 86px;
+     }
+
+    &:hover {
+      background: $textAndInput;
+    }
+  }
+
+  &__message-error {
+    display: none;
+    font-size: 14px;
+    line-height: 19px;
+    color: $error;
+    position: absolute;
+    left: 14px;
+    top: 52px;
+  }
+}
